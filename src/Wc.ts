@@ -223,15 +223,15 @@ export class Wc extends Component<WcTypeProps> {
   }
 }
 
-
 /**
  * Creates a new React Functional Component that wraps the
  * web component with the specified tag name
  *
- * @param {string | Function} tag
- * @returns React Functional Component
+ * @template T - optional props for component
+ * @param {(string | Function)} tag
+ * @returns React component
  */
-export const wrapWc = (tag: string | Function) => {
-  return (props: WcProps) =>
+export const wrapWc = <T = WcProps>(tag: string | Function) => {
+  return (props: T) =>
     React.createElement(Wc, { type: tag, ...props });
 };

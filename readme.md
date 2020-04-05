@@ -62,6 +62,22 @@ const App = (props) => {
 
 All properties and events map exactly as they are defined on the web component.
 
+## Typescript
+
+`wrapWc` supports optional props type to ensure type safety when using the component:
+
+```ts
+type PersonProps = {
+  personDetails: PersonDetails, // object
+  showName: boolean,
+  personCardInteraction: PersonCardInteraction // enum
+}
+
+const Person = wrapWc<PersonProps>('mgt-person');
+```
+
+By default, if no type is provided, any prop will be valid.
+
 ## Why
 
 If you've used web components in React, you know that proper interop between web components and React components requires a bit of extra work.
