@@ -1,0 +1,43 @@
+{
+  "name": "wc-react",
+  "version": "0.1.0",
+  "description": "Web Components wrapper class for React",
+  "author": "metulev",
+  "license": "MIT",
+  "module": "dist/esm/index.js",
+  "main": "dist/esm/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "react",
+    "web component",
+    "web components",
+    "wc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nmetulev/wc-react"
+  },
+  "bugs": {
+    "url": "https://github.com/nmetulev/wc-react/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.32",
+    "react": "^16.13.1",
+    "typescript": "^3.8.3"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "eslint": "^6.8.0"
+  }
+}
