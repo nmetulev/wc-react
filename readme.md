@@ -25,7 +25,7 @@ yarn add wc-react
 Import `wrapWc` at the top:
 
 ```tsx
-import {wrapWc} from 'wc-react`;
+import {wrapWc} from 'wc-react';
 ```
 
 Create a new component that wraps your web component by calling the `wrapWc` function and pass the tag name of the web component.
