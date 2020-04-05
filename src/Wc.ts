@@ -227,7 +227,7 @@ export class Wc extends Component<WcTypeProps> {
  * Creates a new React Functional Component that wraps the
  * web component with the specified tag name
  *
- * @template T - optional props for component
+ * @template T - optional props type for component
  * @param {(string | Function)} tag
  * @returns React component
  */
