@@ -13,7 +13,7 @@ The wrapper syncs props and events to the web component, including when they cha
 ## Installation
 
 ```bash
-  npm install wc-react
+npm install wc-react
 ```
 
 or
