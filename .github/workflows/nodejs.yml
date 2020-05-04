@@ -25,6 +25,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - name: Dev version
+      uses: codaline-io/dev-version-action@0.1.2
+      with:
+        # Branch of current execution
+        branch: master
     - run: npm pack
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
