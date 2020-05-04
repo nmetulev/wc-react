@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -25,15 +25,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm run build --if-present
-    - name: Create NPMRC
-      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-    - name: Publish to Github Packages
-      run: |
-        npm config set _auth $NODE_AUTH_TOKEN
-        npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+    - run: npm pack
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: wc-react
+        # A file, directory or wildcard pattern that describes what to upload
+        path: wc-react-*.tgz
 
