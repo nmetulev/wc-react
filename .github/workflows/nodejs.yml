@@ -34,8 +34,16 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
-        # Artifact name
-        name: wc-react
-        # A file, directory or wildcard pattern that describes what to upload
+        name: npm-package
         path: wc-react-*.tgz
-
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist
+    - uses: actions/setup-node@v1.4.2
+      with:
+        registry-url: 'https://npm.pkg.github.com'
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
