@@ -232,6 +232,7 @@ export class Wc extends Component<WcTypeProps> {
  * @returns React component
  */
 export const wrapWc = <T = WcProps>(tag: string | Function) => {
-  return (props: T) =>
-    React.createElement(Wc, { type: tag, ...props });
+  const component: React.FC<T> = 
+    (props: T) => React.createElement(Wc, { type: tag, ...props });
+  return component;
 };
