@@ -1,6 +1,6 @@
 {
   "name": "wc-react",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Web Components wrapper class for React",
   "author": "metulev",
   "license": "MIT",
@@ -28,11 +28,11 @@
     "prepack": "npm run build"
   },
   "devDependencies": {
-    "@types/react": "^16.9.32",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
+    "@types/react": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
     "eslint": "^6.8.0",
-    "react": "^16.13.1",
+    "react": "^17.0.1",
     "typescript": "^3.8.3"
   },
   "prettier": {
