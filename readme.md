@@ -64,6 +64,8 @@ const App = (props) => {
 
 All properties and events map exactly as they are defined on the web component.
 
+> Note: React events following the `onEvent` naming convention are also supported. For example, if you use the `onClick` event on the React component, wc-react will register the `click` event with the web component.
+
 ## Typescript
 
 `wrapWc` supports optional props type to ensure type safety when using the component:

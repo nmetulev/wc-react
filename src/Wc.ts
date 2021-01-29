@@ -7,10 +7,10 @@ export type WcProps = {
 }
 
 export type WcTypeProps = WcProps & {
-  type: string | Function;
+  wcType: string | Function;
 };
 
-const ignoredProps = new Set(['children', 'type']);
+const ignoredProps = new Set(['children', 'wcType']);
 
 /**
  * React Web Component wrapper Component
@@ -34,7 +34,7 @@ export class Wc extends Component<WcTypeProps> {
   private _element: HTMLElement;
 
   /**
-   * Gets the web component tag name from the 'type' prop
+   * Gets the web component tag name from the 'wcType' prop
    *
    * @protected
    * @returns
@@ -43,13 +43,14 @@ export class Wc extends Component<WcTypeProps> {
   protected getTag() {
     let tag;
 
-    if (typeof this.props.type === 'function') {
+    // when class is passed instead of tag name
+    if (typeof this.props.wcType === 'function') {
       // convert to dash case
-      tag = this.props.type.name
+      tag = this.props.wcType.name
         .replace(/([a-zA-Z])(?=[A-Z])/g, '$1-')
         .toLowerCase();
-    } else if (typeof this.props.type === 'string') {
-      tag = this.props.type;
+    } else if (typeof this.props.wcType === 'string') {
+      tag = this.props.wcType;
     }
 
     return tag;
@@ -64,7 +65,7 @@ export class Wc extends Component<WcTypeProps> {
   public render() {
     const tag = this.getTag();
     if (!tag) {
-      throw '"type" must be set!';
+      throw '"wcType" must be set!';
     }
 
     return React.createElement(
@@ -207,7 +208,11 @@ export class Wc extends Component<WcTypeProps> {
    * @memberof Wc
    */
   protected addEventListener(propName: string, handler: EventListenerOrEventListenerObject) {
-    this._element.addEventListener(propName, handler);
+    let eventName = propName;
+    if (eventName.match(/^on[A-Z]/gm)){
+      eventName = eventName.substring(2).toLowerCase();
+    }
+    this._element.addEventListener(eventName, handler);
   }
 
   /**
@@ -219,7 +224,11 @@ export class Wc extends Component<WcTypeProps> {
    * @memberof Wc
    */
   protected removeEventListener(propName: string, handler: EventListenerOrEventListenerObject) {
-    this._element.removeEventListener(propName, handler);
+    let eventName = propName;
+    if (eventName.match(/^on[A-Z]/gm)){
+      eventName = eventName.substring(2).toLowerCase();
+    }
+    this._element.removeEventListener(eventName, handler);
   }
 }
 
@@ -232,7 +241,7 @@ export class Wc extends Component<WcTypeProps> {
  * @returns React component
  */
 export const wrapWc = <T = WcProps>(tag: string | Function) => {
-  const component: React.FC<T> = 
-    (props: T) => React.createElement(Wc, { type: tag, ...props });
+  const component: React.FC<T & React.HTMLAttributes<any>> = 
+    (props: T) => React.createElement(Wc, { wcType: tag, ...props });
   return component;
 };
