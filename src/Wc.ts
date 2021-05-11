@@ -7,7 +7,9 @@ export type WcProps = {
 }
 
 export type WcTypeProps = WcProps & {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   wcType: string | Function;
+  innerRef: React.Ref<unknown>;
 };
 
 const ignoredProps = new Set(['children', 'wcType']);
@@ -93,6 +95,15 @@ export class Wc extends Component<WcTypeProps> {
       this.syncProps(this.props);
     } else {
       this.cleanUp();
+    }
+
+    if (this.props.innerRef) {
+      if (typeof this.props.innerRef === 'function') {
+          this.props.innerRef(element);
+      }
+      else {
+          (this.props.innerRef as any).current = element;
+      }
     }
   }
 
@@ -240,8 +251,9 @@ export class Wc extends Component<WcTypeProps> {
  * @param {(string | Function)} tag
  * @returns React component
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const wrapWc = <T = WcProps>(tag: string | Function) => {
-  const component: React.FC<T & React.HTMLAttributes<any>> = 
-    (props: T) => React.createElement(Wc, { wcType: tag, ...props });
+  const component: React.ForwardRefExoticComponent<React.PropsWithoutRef<T & React.HTMLAttributes<any>> & React.RefAttributes<unknown>> = 
+    React.forwardRef((props: T, ref) => React.createElement(Wc, { wcType: tag, innerRef: ref, ...props }));
   return component;
 };

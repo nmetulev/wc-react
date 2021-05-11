@@ -66,6 +66,38 @@ All properties and events map exactly as they are defined on the web component.
 
 > Note: React events following the `onEvent` naming convention are also supported. For example, if you use the `onClick` event on the React component, wc-react will register the `click` event with the web component.
 
+## Refs
+
+Wrapped components support passing a `ref` which will get a reference to the underlying web component.
+
+Example with `useRef`:
+
+```jsx
+const App = (props) => {
+
+  let myRef = React.useRef();
+
+  const handleClick = () => {
+    console.log('web component reference', myRef.current)
+  }
+
+  return <MyComponent ref={myRef} onClick={handleClick}></MyComponent>;
+}
+```
+
+Example with callback:
+
+```jsx
+const App = (props) => {
+
+  const onRefChanged = (element) => {
+    console.log('web component reference', element)
+  }
+
+  return <MyComponent ref={onRefChanged}></MyComponent>;
+}
+```
+
 ## Typescript
 
 `wrapWc` supports optional props type to ensure type safety when using the component:
