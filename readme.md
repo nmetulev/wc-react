@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/wc-react?style=for-the-badge)](https://www.npmjs.com/package/wc-react) ![GitHub](https://img.shields.io/github/license/nmetulev/wc-react?style=for-the-badge)
 
-Use `wc-react` to simplify usage of web components in React. This is a is a light wrapper to helps manage events and props of the web component.
+Use `wc-react` to simplify usage of web components in React. This is a light wrapper to help manage events and props of the web component.
 
 ```tsx
 const MyComponent = wrapWc('my-web-component');
