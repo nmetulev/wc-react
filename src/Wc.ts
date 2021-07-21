@@ -72,7 +72,10 @@ export class Wc extends Component<WcTypeProps> {
 
     return React.createElement(
       tag,
-      { ref: (element: HTMLElement) => this.setRef(element) },
+      {
+        ...this.props,
+        ref: (element: HTMLElement) => this.setRef(element)
+      },
       this.props.children
     );
   }
