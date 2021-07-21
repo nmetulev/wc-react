@@ -69,11 +69,18 @@ export class Wc extends Component<WcTypeProps> {
     if (!tag) {
       throw '"wcType" must be set!';
     }
+    
+    const allBools = {};
+    for (const key of Object.keys(this.props)) {
+        if (key && this.props[key] === true) {
+            allBools[key] = true;
+        }
+    }
 
     return React.createElement(
       tag,
       {
-        ...this.props,
+        ...allBools,
         ref: (element: HTMLElement) => this.setRef(element)
       },
       this.props.children
