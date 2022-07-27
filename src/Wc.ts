@@ -124,7 +124,7 @@ export class Wc extends Component<WcTypeProps> {
         continue;
       }
 
-      if (this.isEventProp(prop, this.props)) {
+      if (this.isEventProp(prop, this.props[prop])) {
         this._element.removeEventListener(
           prop[2].toLowerCase() + prop.substring(3),
           this.props[prop]
