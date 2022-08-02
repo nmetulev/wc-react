@@ -1,6 +1,6 @@
 {
   "name": "wc-react",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Web Components wrapper class for React",
   "author": "metulev",
   "license": "MIT",
